@@ -32,38 +32,61 @@ function TopicList({ topicAndValue }) {
   );
 }
 
-function GenerateRandom1ptTopicsButton({ onGenerateRandom1ptTopics }) {
+function GenerateRandom1ptTopicsButton({ onGenerateRandom1ptTopics, onePointTopics }) {
+  console.log('one pt topics', onePointTopics);
+  const displayTopics = onePointTopics.map(topic => <li> {topic.name} </li>);
+  console.log('display:', displayTopics);
   return (
-    <Button bsStyle="success" onClick={onGenerateRandom1ptTopics}>
-      Generate 1pt Topics
-    </Button>
+    <div>
+      <Button bsStyle="success" onClick={onGenerateRandom1ptTopics}>
+        Generate 1pt Topics
+      </Button>
+      {displayTopics}
+    </div>
   );
 }
 
-function GenerateRandom3ptTopicsButton({ onGenerateRandom3ptTopics }) {
+function GenerateRandom3ptTopicsButton({ onGenerateRandom3ptTopics, threePointTopics }) {
+  const displayTopics = threePointTopics.map(topic => <li> {topic.name} </li>);
   return (
-    <Button bsStyle="warning" onClick={onGenerateRandom3ptTopics}>
-      Generate 3pt Topics
-    </Button>
+    <div>
+      <Button bsStyle="warning" onClick={onGenerateRandom3ptTopics}>
+        Generate 3pt Topics
+      </Button>
+      {displayTopics}
+    </div>
   );
 }
 
-function GenerateRandom5ptTopicsButton({ onGenerateRandom5ptTopics }) {
+function GenerateRandom5ptTopicsButton({ onGenerateRandom5ptTopics, fivePointTopics }) {
+  const displayTopics = fivePointTopics.map(topic => <li> {topic.name} </li>);
   return (
-    <Button bsStyle="danger" onClick={onGenerateRandom5ptTopics}>
-      Generate 5pt Topics
-    </Button>
+    <div>
+      <Button bsStyle="danger" onClick={onGenerateRandom5ptTopics}>
+        Generate 5pt Topics
+      </Button>
+      {displayTopics}
+    </div>
   );
 }
 
 export default function SirGame(props) {
-  console.log(props);
+  console.log('props:', props);
   return (
     <div>
       <TopicList topicAndValue={props.topicAndValue} />
-      <GenerateRandom1ptTopicsButton onGenerateRandom1ptTopics={props.onGenerateRandom1ptTopics} />
-      <GenerateRandom3ptTopicsButton onGenerateRandom3ptTopics={props.onGenerateRandom3ptTopics} />
-      <GenerateRandom5ptTopicsButton onGenerateRandom5ptTopics={props.onGenerateRandom5ptTopics} />
+      <GenerateRandom1ptTopicsButton
+        onGenerateRandom1ptTopics={props.onGenerateRandom1ptTopics}
+        onePointTopics={props.onePointTopics}
+      />
+      <GenerateRandom3ptTopicsButton
+        onGenerateRandom3ptTopics={props.onGenerateRandom3ptTopics}
+        threePointTopics={props.threePointTopics}
+      />
+      <GenerateRandom5ptTopicsButton
+        onGenerateRandom5ptTopics={props.onGenerateRandom5ptTopics}
+        fivePointTopics={props.fivePointTopics}
+      />
     </div>
   );
 }

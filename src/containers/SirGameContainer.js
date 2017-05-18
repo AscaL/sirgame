@@ -40,6 +40,9 @@ export default class SirGameContainer extends Component {
     this.state = {
       topicAndValue,
       numberOfPlayers: 4,
+      onePointTopics: [],
+      threePointTopics: [],
+      fivePointTopics: [],
     };
   }
 
@@ -56,17 +59,17 @@ export default class SirGameContainer extends Component {
 
   handleGenerateRandom1ptTopics() {
     const randomOnePointTopics = this.generateRandomTopics(this.state.topicAndValue, 1);
-    return randomOnePointTopics;
+    this.setState({ onePointTopics: randomOnePointTopics });
   }
 
   handleGenerateRandom3ptTopics() {
     const randomThreePointTopics = this.generateRandomTopics(this.state.topicAndValue, 3);
-    return randomThreePointTopics;
+    this.setState({ threePointTopics: randomThreePointTopics });
   }
 
   handleGenerateRandom5ptTopics() {
     const randomFivePointTopics = this.generateRandomTopics(this.state.topicAndValue, 5);
-    return randomFivePointTopics;
+    this.setState({ fivePointTopics: randomFivePointTopics });
   }
 
   render() {
@@ -76,6 +79,9 @@ export default class SirGameContainer extends Component {
         onGenerateRandom1ptTopics={this.handleGenerateRandom1ptTopics}
         onGenerateRandom3ptTopics={this.handleGenerateRandom3ptTopics}
         onGenerateRandom5ptTopics={this.handleGenerateRandom5ptTopics}
+        onePointTopics={this.state.onePointTopics}
+        threePointTopics={this.state.threePointTopics}
+        fivePointTopics={this.state.fivePointTopics}
       />
     );
   }
