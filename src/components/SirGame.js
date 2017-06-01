@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Table, Grid, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 function generateTopicList(topicAndValue) {
   const topicAndValueTable = topicAndValue.map(topic => (
@@ -34,38 +34,40 @@ function TopicList({ topicAndValue }) {
 
 function GenerateRandom1ptTopicsButton({ onGenerateRandom1ptTopics, onePointTopics }) {
   console.log('one pt topics', onePointTopics);
-  const displayTopics = onePointTopics.map(topic => <li> {topic.name} </li>);
+  const displayTopics = onePointTopics.map(topic => <ListGroupItem> {topic.name} </ListGroupItem>);
   console.log('display:', displayTopics);
   return (
     <div>
       <Button bsStyle="success" onClick={onGenerateRandom1ptTopics}>
         Generate 1pt Topics
       </Button>
-      {displayTopics}
+      <ListGroup>{displayTopics}</ListGroup>
     </div>
   );
 }
 
 function GenerateRandom3ptTopicsButton({ onGenerateRandom3ptTopics, threePointTopics }) {
-  const displayTopics = threePointTopics.map(topic => <li> {topic.name} </li>);
+  const displayTopics = threePointTopics.map(topic => (
+    <ListGroupItem> {topic.name} </ListGroupItem>
+  ));
   return (
     <div>
       <Button bsStyle="warning" onClick={onGenerateRandom3ptTopics}>
         Generate 3pt Topics
       </Button>
-      {displayTopics}
+      <ListGroup>{displayTopics}</ListGroup>
     </div>
   );
 }
 
 function GenerateRandom5ptTopicsButton({ onGenerateRandom5ptTopics, fivePointTopics }) {
-  const displayTopics = fivePointTopics.map(topic => <li> {topic.name} </li>);
+  const displayTopics = fivePointTopics.map(topic => <ListGroupItem> {topic.name} </ListGroupItem>);
   return (
     <div>
       <Button bsStyle="danger" onClick={onGenerateRandom5ptTopics}>
         Generate 5pt Topics
       </Button>
-      {displayTopics}
+      <ListGroup>{displayTopics}</ListGroup>
     </div>
   );
 }
@@ -73,7 +75,7 @@ function GenerateRandom5ptTopicsButton({ onGenerateRandom5ptTopics, fivePointTop
 export default function SirGame(props) {
   console.log('props:', props);
   return (
-    <div>
+    <Grid>
       <TopicList topicAndValue={props.topicAndValue} />
       <GenerateRandom1ptTopicsButton
         onGenerateRandom1ptTopics={props.onGenerateRandom1ptTopics}
@@ -87,6 +89,6 @@ export default function SirGame(props) {
         onGenerateRandom5ptTopics={props.onGenerateRandom5ptTopics}
         fivePointTopics={props.fivePointTopics}
       />
-    </div>
+    </Grid>
   );
 }
